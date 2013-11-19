@@ -1,0 +1,12 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.box = "precise64"
+    config.vm.provision "shell", path: "install/init.sh"
+    config.vm.provision "shell", path: "install/php.sh"
+    config.vm.provision "shell", path: "install/composer.sh"
+    config.vm.provision "shell", path: "install/phpunit.sh"
+    config.vm.provision "shell", path: "install/zephir.sh"
+    config.vm.provision "shell", path: "install/vendor.sh"
+    config.vm.provision "shell", path: "install/symfony.sh"
+end

@@ -1,0 +1,6 @@
+.vagrant/
+composer.lock
+symfony/.temp/
+symfony/config.json
+symfony/ext/
+vendor/

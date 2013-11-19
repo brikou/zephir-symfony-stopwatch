@@ -7,9 +7,13 @@ Install
 -------
 
 ```bash
-
 vagrant up
+```
+
+Example
+-------
+
+```bash
 vagrant ssh
 php /vagrant/example.php
-
 ```

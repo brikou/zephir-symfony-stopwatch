@@ -10,6 +10,7 @@ Install
 sudo docker build - < dockerfile
 k=`sudo docker images -q | head -n1`
 sudo docker run -v=$PWD:/root -i -t $k /bin/bash
+cd /root/
 make compile
 ```
 

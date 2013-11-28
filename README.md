@@ -10,7 +10,6 @@ Install
 sudo docker build - < dockerfile
 k=`sudo docker images -q | head -n1`
 sudo docker run -v=$PWD:/root -i -t $k /bin/bash
-[ -d /root/vendor/ ] || composer.phar install --working-dir /root/ --prefer-source
 make compile
 ```
 

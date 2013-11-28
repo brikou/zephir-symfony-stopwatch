@@ -4,5 +4,6 @@ compile:
 	php5enmod symfony
 
 test:
+	[ -d /root/vendor/ ] || composer.phar install --working-dir /root/ --prefer-source
 	[ -d /root/vendor/symfony/stopwatch/Symfony/Component/Stopwatch/vendor/ ] || composer.phar install --working-dir /root/vendor/symfony/stopwatch/Symfony/Component/Stopwatch/ && sed --in-place '57i$$this->markTestSkipped();' /root/vendor/symfony/stopwatch/Symfony/Component/Stopwatch/Tests/StopwatchTest.php
 	phpunit --colors /root/vendor/symfony/stopwatch/Symfony/Component/Stopwatch/

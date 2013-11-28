@@ -7,13 +7,41 @@ Install
 -------
 
 ```bash
-vagrant up
+sudo docker build - < dockerfile
+k=`sudo docker images -q | head -n1`
+sudo docker run -v=$PWD:/root -i -t $k /bin/bash
+[ -d /root/vendor/ ] || composer.phar install --working-dir /root/ --prefer-source
+make compile
 ```
 
 Example
 -------
 
 ```bash
-vagrant ssh
-php /vagrant/example.php
+php << 'EOF'
+<?php
+
+use Symfony\Component\Stopwatch\Stopwatch;
+use Symfony\Component\Stopwatch\StopwatchEvent;
+use Symfony\Component\Stopwatch\StopwatchPeriod;
+
+$stopwatch = new Stopwatch();
+$stopwatch->start('eventA');
+usleep(200000);
+$stopwatch->start('eventB');
+usleep(200000);
+$eventA = $stopwatch->stop('eventA');
+$eventB = $stopwatch->stop('eventB');
+
+printf("Duration of event A: %u ms.\n", $eventA->getDuration());
+printf("Duration of event B: %u ms.\n", $eventB->getDuration());
+
+EOF
+```
+
+Testing
+-------
+
+```bash
+make test
 ```

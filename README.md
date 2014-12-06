@@ -29,6 +29,26 @@ then proceed to build
 ```bash
 $ zephir build
 ```
+edit php.ini and add
+```
+extension=symftest.so
+```
+
+and lastly test.php
+```php
+<?php
+$stopwatch = new Symftest\Stopwatch\Stopwatch();
+$stopwatch->start('EventA');
+usleep(200000);
+$eventA = $stopwatch->stop('EventA');
+
+var_dump($eventA->getDuration());
+
+//outputs float(201)
+```
+
+
+------
 
 [The Symfony's Stopwatch Component](http://symfony.com/doc/current/components/stopwatch.html) delivered as a C extension with the gracefull help of [Zephir](http://zephir-lang.com/).
 

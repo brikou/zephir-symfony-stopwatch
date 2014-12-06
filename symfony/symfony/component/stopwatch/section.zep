@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Stopwatch;
+namespace test\Stopwatch;
 
 /**
  * @internal This class is for internal usage only
@@ -134,7 +134,7 @@ class Section
                 let origin = this->origin;
             }
 
-            let this->events[name] = new \Symfony\Component\Stopwatch\StopwatchEvent(origin, category);
+            let this->events[name] = new \test\Stopwatch\StopwatchEvent(origin, category);
         }
 
         return this->events[name]->start();

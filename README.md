@@ -1,6 +1,35 @@
 Zephir Symfony Stopwatch
 ========================
 
+Edit
+-------
+Made a few changes to the files
+
+1. Removed comments (causing errors)
+2. Removed $
+3. Changed namespace 
+
+start a zephir init
+```
+$ zephir init symftest
+$ cd symftest
+$ mkdir stopwatch
+```
+to build project put project in the following folder
+```
+ext/
+symftest/
+  stopwatch/
+    section.zep
+    stopwatch.zep
+    stowatchevent.zep
+    stopwatchperiod.zep
+```
+then proceed to build
+```bash
+$ zephir build
+```
+
 [The Symfony's Stopwatch Component](http://symfony.com/doc/current/components/stopwatch.html) delivered as a C extension with the gracefull help of [Zephir](http://zephir-lang.com/).
 
 Install

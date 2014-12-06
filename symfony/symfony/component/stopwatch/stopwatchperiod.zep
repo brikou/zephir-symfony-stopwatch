@@ -1,75 +1,35 @@
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace Symftest\Stopwatch;
 
-namespace Symfony\Component\Stopwatch;
-
-/**
- * Represents an Period for an Event.
- *
- * @author Fabien Potencier <fabien@symfony.com>
- */
 class StopwatchPeriod
 {
-    private $start;
-    private $end;
-    private $memory;
+    private start;
+    private end;
+    private memory;
 
-    /**
-     * Constructor
-     *
-     * @param integer $start The relative time of the start of the period
-     * @param integer $end   The relative time of the end of the period
-     */
-    public function __construct(uint $start, uint $end)
+    public function __construct(start, end)
     {
-        let $this->start = $start;
-        let $this->end = $end;
-        let $this->memory = memory_get_usage(true);
+        let this->start = start;
+        let this->end = end;
+        let this->memory = memory_get_usage(true);
     }
 
-    /**
-     * Gets the relative time of the start of the period.
-     *
-     * @return integer The time (in milliseconds)
-     */
-    public function getStartTime() -> uint
+    public function getStartTime()
     {
-        return $this->start;
+        return this->start;
     }
 
-    /**
-     * Gets the relative time of the end of the period.
-     *
-     * @return integer The time (in milliseconds)
-     */
-    public function getEndTime() -> uint
+    public function getEndTime()
     {
-        return $this->end;
+        return this->end;
     }
 
-    /**
-     * Gets the time spent in this period.
-     *
-     * @return integer The period duration (in milliseconds)
-     */
-    public function getDuration() -> uint
+    public function getDuration()
     {
-        return $this->end - $this->start;
+        return this->end - this->start;
     }
 
-    /**
-     * Gets the memory usage.
-     *
-     * @return integer The memory usage (in bytes)
-     */
-    public function getMemory() -> uint
+    public function getMemory()
     {
-        return $this->memory;
+        return this->memory;
     }
 }

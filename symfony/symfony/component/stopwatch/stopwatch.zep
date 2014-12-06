@@ -1,44 +1,17 @@
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace Symftest\Stopwatch;
 
-namespace symftest\Stopwatch;
-
-/**
- * Stopwatch provides a way to profile code.
- *
- * @author Fabien Potencier <fabien@symfony.com>
- */
 class Stopwatch
 {
-    /**
-     * @var Section[]
-     */
     private sections;
 
-    /**
-     * @var array
-     */
     private activeSections;
 
     public function __construct()
     {
-        let this->sections = ["__root__": new \symftest\Stopwatch\Section("__root__")];
+        let this->sections = ["__root__": new \Symftest\Stopwatch\Section("__root__")];
         let this->activeSections = this->sections;
     }
 
-    /**
-     * Creates a new section or re-opens an existing section.
-     *
-     * @param string|null id The id of the session to re-open, null to create a new one
-     *
-     * @throws \LogicException When the section to re-open is not reachable
-     */
     public function openSection(id = null) -> void
     {
         var current;
@@ -54,17 +27,6 @@ class Stopwatch
         this->start("__section__");
     }
 
-    /**
-     * Stops the last started section.
-     *
-     * The id parameter is used to retrieve the events from this section.
-     *
-     * @see getSectionEvents
-     *
-     * @param string id The identifier of the section
-     *
-     * @throws \LogicException When there's no started section to be stopped
-     */
     public function stopSection(id) -> void
     {
         var section;
@@ -80,14 +42,6 @@ class Stopwatch
         this->stop("__section__.child");
     }
 
-    /**
-     * Starts an event.
-     *
-     * @param string name     The event name
-     * @param string category The event category
-     *
-     * @return StopwatchEvent A StopwatchEvent instance
-     */
     public function start(string name, category = null)
     {
         var activeSection;
@@ -97,13 +51,6 @@ class Stopwatch
         return activeSection->startEvent(name, category);
     }
 
-    /**
-     * Checks if the event was started
-     *
-     * @param string name The event name
-     *
-     * @return bool
-     */
     public function isStarted(string name) -> boolean
     {
         var activeSection;
@@ -113,13 +60,6 @@ class Stopwatch
         return activeSection->isEventStarted(name);
     }
 
-    /**
-     * Stops an event.
-     *
-     * @param string name The event name
-     *
-     * @return StopwatchEvent A StopwatchEvent instance
-     */
     public function stop(string name)
     {
         var activeSection;
@@ -128,13 +68,7 @@ class Stopwatch
 
         return activeSection->stopEvent(name);
     }
-     /**
-     * Stops then restarts an event.
-     *
-     * @param string name The event name
-     *
-     * @return StopwatchEvent A StopwatchEvent instance
-     */
+
     public function lap(string name)
     {
         var activeSection, event;
@@ -145,14 +79,8 @@ class Stopwatch
         return event->start();
     }
 
-    /**
-     * Gets all events for a given section.
-     *
-     * @param string id A section identifier
-     *
-     * @return StopwatchEvent[] An array of StopwatchEvent instances
-     */
-    public function getSectionEvents(string id) -> <Array>
+
+    public function getSectionEvents(string id)
     {
         var sections, section;
 

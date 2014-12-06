@@ -14,7 +14,7 @@
  * file that was distributed with this source code.
  */
 
-namespace test\Stopwatch;
+namespace symftest\Stopwatch;
 
 /**
  * Represents an Event managed by Stopwatch.
@@ -88,7 +88,7 @@ class StopwatchEvent
      *
      * @return StopwatchEvent The event
      */
-    public function start() -> <test\Stopwatch\StopwatchEvent>
+    public function start() -> <symftest\Stopwatch\StopwatchEvent>
     {
         let this->started[] = this->getNow();
 
@@ -110,7 +110,7 @@ class StopwatchEvent
             throw new \LogicException("stop() called but start() has not been called before.");
         }
 
-        array_push(this->periods, new \test\Stopwatch\StopwatchPeriod(array_pop(this->started), this->getNow()));
+        array_push(this->periods, new \symftest\Stopwatch\StopwatchPeriod(array_pop(this->started), this->getNow()));
 
         return this;
     }
@@ -130,7 +130,7 @@ class StopwatchEvent
      *
      * @return StopwatchEvent The event
      */
-    public function lap() -> <test\Stopwatch\StopwatchEvent>
+    public function lap() -> <symftest\Stopwatch\StopwatchEvent>
     {
         return this->stop()->start();
     }

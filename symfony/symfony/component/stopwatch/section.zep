@@ -19,36 +19,36 @@ class Section
     /**
      * @var StopwatchEvent[]
      */
-    private $events;
+    private events;
 
     /**
      * @var null|float
      */
-    private $origin;
+    private origin;
 
     /**
      * @var string
      */
-    private $id;
+    private id;
 
     /**
      * @var Section[]
      */
-    private $children;
+    private children;
 
     /**
      * Constructor.
      *
      * @param float|null $origin Set the origin of the events in this section, use null to set their origin to their start time
      */
-    public function __construct($origin = null)
+    public function __construct(origin = null)
     {
-        let $this->events = [];
-        let $this->children = [];
-        if is_numeric($origin) {
-            let $this->origin = $origin;
+        let this->events = [];
+        let this->children = [];
+        if is_numeric(origin) {
+            let this->origin = origin;
         } else {
-            let $this->origin = null;
+            let this->origin = null;
         }
     }
 
@@ -59,13 +59,13 @@ class Section
      *
      * @return Section|null The child section or null when none found
      */
-    public function get(string $id)
+    public function get(string id)
     {
-        var $child;
+        var child;
 
-        for $child in $this->children {
-            if ($id === $child->getId()) {
-                return $child;
+        for child in this->children {
+            if (id === child->getId()) {
+                return child;
             }
         }
 
@@ -79,17 +79,17 @@ class Section
      *
      * @return Section A child section
      */
-    public function open($id) -> <Symfony\Component\Stopwatch\Section>
+    public function open(id)
     {
-        var $session;
+        var session;
 
-        let $session = $this->get($id);
-        if is_null($session) {
-            let $session = new self(microtime(true) * 1000);
-            let $this->children[] = $session;
+        let session = this->get(id);
+        if is_null(session) {
+            let session = new self(microtime(true) * 1000);
+            let this->children[] = session;
         }
 
-        return $session;
+        return session;
     }
 
     /**
@@ -97,21 +97,21 @@ class Section
      */
     public function getId() -> string
     {
-        return $this->id;
+        return this->id;
     }
 
     /**
      * Sets the session identifier.
      *
-     * @param string $id The session identifier
+     * @param string id The session identifier
      *
      * @return Section The current section
      */
-    public function setId(string $id) -> <Symfony\Component\Stopwatch\Section>
+    public function setId(string id)
     {
-        let $this->id = $id;
+        let $this->id = id;
 
-        return $this;
+        return this;
     }
 
     /**
@@ -122,22 +122,22 @@ class Section
      *
      * @return StopwatchEvent The event
      */
-    public function startEvent(string $name, string $category) -> <Symfony\Component\Stopwatch\StopwatchEvent>
+    public function startEvent(string name, string category)
     {
-        var $origin;
+        var origin;
 
-        if !array_key_exists($name, $this->events) {
+        if !array_key_exists(name, this->events) {
 
-            if is_null($this->origin) {
-                let $origin = microtime(true) * 1000;
+            if is_null(this->origin) {
+                let origin = microtime(true) * 1000;
             } else {
-                let $origin = $this->origin;
+                let origin = this->origin;
             }
 
-            let $this->events[$name] = new \Symfony\Component\Stopwatch\StopwatchEvent($origin, $category);
+            let this->events[name] = new \Symfony\Component\Stopwatch\StopwatchEvent(origin, category);
         }
 
-        return $this->events[$name]->start();
+        return this->events[name]->start();
     }
 
     /**
@@ -147,13 +147,13 @@ class Section
      *
      * @return bool
      */
-    public function isEventStarted(string $name) -> boolean
+    public function isEventStarted(string name) -> boolean
     {
-        if !array_key_exists($name, $this->events) {
+        if !array_key_exists(name, this->events) {
             return false;
         }
 
-        return $this->events[$name]->isStarted();
+        return this->events[name]->isStarted();
     }
 
     /**
@@ -165,13 +165,13 @@ class Section
      *
      * @throws \LogicException When the event has not been started
      */
-    public function stopEvent(string $name) -> <Symfony\Component\Stopwatch\StopwatchEvent>
+    public function stopEvent(string name)
     {
-        if !array_key_exists($name, $this->events) {
+        if !array_key_exists(name, this->events) {
             throw new \LogicException(sprintf("Event \"%s\" is not started.", $name));
         }
 
-        return $this->events[$name]->stop();
+        return this->events[name]->stop();
     }
 
     /**
@@ -183,13 +183,13 @@ class Section
      *
      * @throws \LogicException When the event has not been started
      */
-    public function lap(string $name) -> <Symfony\Component\Stopwatch\StopwatchEvent>
+    public function lap(string name)
     {
         var event;
 
-        let $event = $this->stopEvent($name);
+        let event = this->stopEvent($name);
 
-        return $event->start();
+        return event->start();
     }
 
     /**
@@ -197,8 +197,8 @@ class Section
      *
      * @return StopwatchEvent[] An array of StopwatchEvent instances
      */
-    public function getEvents() -> <Array>
+    public function getEvents()
     {
-        return $this->events;
+        return this->events;
     }
 }

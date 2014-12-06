@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Stopwatch;
+namespace test\Stopwatch;
 
 /**
  * Represents an Period for an Event.
@@ -16,21 +16,21 @@ namespace Symfony\Component\Stopwatch;
  */
 class StopwatchPeriod
 {
-    private $start;
-    private $end;
-    private $memory;
+    private start;
+    private end;
+    private memory;
 
     /**
      * Constructor
      *
-     * @param integer $start The relative time of the start of the period
-     * @param integer $end   The relative time of the end of the period
+     * @param integer start The relative time of the start of the period
+     * @param integer end   The relative time of the end of the period
      */
-    public function __construct(uint $start, uint $end)
+    public function __construct(start, end)
     {
-        let $this->start = $start;
-        let $this->end = $end;
-        let $this->memory = memory_get_usage(true);
+        let this->start = start;
+        let this->end = end;
+        let this->memory = memory_get_usage(true);
     }
 
     /**
@@ -38,9 +38,9 @@ class StopwatchPeriod
      *
      * @return integer The time (in milliseconds)
      */
-    public function getStartTime() -> uint
+    public function getStartTime()
     {
-        return $this->start;
+        return this->start;
     }
 
     /**
@@ -48,9 +48,9 @@ class StopwatchPeriod
      *
      * @return integer The time (in milliseconds)
      */
-    public function getEndTime() -> uint
+    public function getEndTime()
     {
-        return $this->end;
+        return this->end;
     }
 
     /**
@@ -58,9 +58,9 @@ class StopwatchPeriod
      *
      * @return integer The period duration (in milliseconds)
      */
-    public function getDuration() -> uint
+    public function getDuration()
     {
-        return $this->end - $this->start;
+        return this->end - this->start;
     }
 
     /**
@@ -68,8 +68,8 @@ class StopwatchPeriod
      *
      * @return integer The memory usage (in bytes)
      */
-    public function getMemory() -> uint
+    public function getMemory()
     {
-        return $this->memory;
+        return this->memory;
     }
 }

@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace test\Stopwatch;
+namespace symftest\Stopwatch;
 
 /**
  * Stopwatch provides a way to profile code.
@@ -28,7 +28,7 @@ class Stopwatch
 
     public function __construct()
     {
-        let this->sections = ["__root__": new \test\Stopwatch\Section("__root__")];
+        let this->sections = ["__root__": new \symftest\Stopwatch\Section("__root__")];
         let this->activeSections = this->sections;
     }
 

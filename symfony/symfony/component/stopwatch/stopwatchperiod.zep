@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace test\Stopwatch;
+namespace symftest\Stopwatch;
 
 /**
  * Represents an Period for an Event.
